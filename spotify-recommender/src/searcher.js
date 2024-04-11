@@ -1,9 +1,8 @@
 function search(accessToken, searchInput) {
         
-    // search Spotify API
+    // search Spotify API based on searchInput
     console.log({accessToken})
     var endpoint = "https://api.spotify.com/v1/search"
-    //var query = "hotel californ"
     var query = searchInput
     var type = "track"
     var request = endpoint + '?q=' + query + '&type=' + type 
@@ -18,8 +17,15 @@ function search(accessToken, searchInput) {
       }
     }
     fetch(request, searchParameters)
-      .then(response => response.json())
+      .then(response => {
+        if(response.ok) {
+            response.json()
+        } else {
+            console.log("response not good")
+        }
+      })
       .then(data => console.log(data))
+      .catch(error => console.log(error))
 
     }
 

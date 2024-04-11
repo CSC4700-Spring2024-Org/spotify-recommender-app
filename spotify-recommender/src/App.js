@@ -35,8 +35,8 @@ function App() {
           <Titlebar />
         </div>
         <div className="container" style={{padding: 20}} >
-          <input id="searchInput" placeholder='Enter a song...'/>
-          <button onClick={event => search(accessToken, document.getElementById("searchInput").value)}>Search</button>
+          <input id="searchInput" placeholder='Enter a song...' style={{borderRadius: 5, margin: 3, lineHeight: 1.75}}/>
+          <button style={{borderRadius: 5, lineHeight: 1.75}} onClick={event => search(accessToken, document.getElementById("searchInput").value)}>Search</button>
         </div>
       </div>
     </div>

@@ -28,6 +28,10 @@ function App() {
       .catch(error => console.log(error))
     })
 
+    const handleChange = (value) => {
+      search(accessToken, value)
+    }
+
   return (
     <div className="App">
       <div className="row">
@@ -35,7 +39,7 @@ function App() {
           <Titlebar />
         </div>
         <div className="container" style={{padding: 20}} >
-          <input id="searchInput" placeholder='Enter a song...' style={{borderRadius: 5, margin: 3, lineHeight: 1.75}}/>
+          <input id="searchInput" placeholder='Enter a song...' style={{borderRadius: 5, margin: 3, lineHeight: 1.75}} onChange={event => handleChange(document.getElementById("searchInput").value)}/>
           <button style={{borderRadius: 5, lineHeight: 1.75}} onClick={event => search(accessToken, document.getElementById("searchInput").value)}>Search</button>
         </div>
       </div>

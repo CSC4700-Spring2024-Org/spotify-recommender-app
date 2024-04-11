@@ -27,9 +27,11 @@ function App() {
 })
 
   return (
-      <div className="App" onClick={event => search(accessToken)}>
-      hello world
+      <div className="App">
+      <input id="searchInput"/>
+      <button onClick={event => search(accessToken, document.getElementById("searchInput").value)}>Search</button>
     </div>
+    
   );
 }
 

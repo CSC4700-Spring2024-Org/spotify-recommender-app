@@ -1,9 +1,10 @@
-function search(accessToken) {
+function search(accessToken, searchInput) {
         
     // search Spotify API
     console.log({accessToken})
     var endpoint = "https://api.spotify.com/v1/search"
-    var query = "hotel californ"
+    //var query = "hotel californ"
+    var query = searchInput
     var type = "track"
     var request = endpoint + '?q=' + query + '&type=' + type 
     console.log("Search for " + query)

@@ -1,4 +1,4 @@
-function search(accessToken, searchInput) {
+async function search(accessToken, searchInput) {
         
     // search Spotify API based on searchInput
     console.log({accessToken})
@@ -16,10 +16,14 @@ function search(accessToken, searchInput) {
         'Authorization': 'Bearer ' + accessToken
       }
     }
-    fetch(request, searchParameters)
+    var data = await fetch(request, searchParameters)
       .then(response => response.json())
-      .then(data => console.log(data))
+      .then(data => { return data })
       .catch(error => console.log(error))
+
+      // display results of Search
+      var firstResult = data.tracks.items[0]
+      console.log(firstResult.name + " - " + firstResult.artists[0].name + " (" + firstResult.album.name + ")" )
 
     }
 

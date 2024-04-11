@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { search } from './searcher.js';
 import { useEffect, useState } from "react";
@@ -28,7 +27,7 @@ function App() {
     })
 
   return (
-      <div className="App">
+    <div className="App">
       <input id="searchInput"/>
       <button onClick={event => search(accessToken, document.getElementById("searchInput").value)}>Search</button>
     </div>

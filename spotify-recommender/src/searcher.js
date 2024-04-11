@@ -17,13 +17,7 @@ function search(accessToken, searchInput) {
       }
     }
     fetch(request, searchParameters)
-      .then(response => {
-        if(response.ok) {
-            response.json()
-        } else {
-            console.log("response not good")
-        }
-      })
+      .then(response => response.json())
       .then(data => console.log(data))
       .catch(error => console.log(error))
 

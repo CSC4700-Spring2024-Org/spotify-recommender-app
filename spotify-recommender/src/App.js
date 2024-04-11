@@ -2,6 +2,7 @@ import './App.css';
 import { search } from './searcher.js';
 import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Titlebar from "./components/Titlebar.js";
 
 function App() {
 
@@ -29,8 +30,15 @@ function App() {
 
   return (
     <div className="App">
-      <input id="searchInput"/>
-      <button onClick={event => search(accessToken, document.getElementById("searchInput").value)}>Search</button>
+      <div className="row">
+        <div className="container">
+          <Titlebar />
+        </div>
+        <div className="container">
+          <input id="searchInput"/>
+          <button onClick={event => search(accessToken, document.getElementById("searchInput").value)}>Search</button>
+        </div>
+      </div>
     </div>
     
   );

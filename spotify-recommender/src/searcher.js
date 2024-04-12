@@ -23,11 +23,19 @@ async function search(accessToken, searchInput) {
       .catch(error => console.log(error))
 
       // parse + return results of search
-      var firstResult = data.tracks.items[0]
-      var simplifiedResult = firstResult.name + " - " + firstResult.artists[0].name + " (" + firstResult.album.name + ")" 
+    const simplifiedResults = []
+    for(var i=0; i < 4; i++) {
+      var result = data.tracks.items[i]
+      var simplifiedResult = result.name + " - " + result.artists[0].name + " (" + result.album.name + ")\n"
       console.log(simplifiedResult)
+      simplifiedResults.push(simplifiedResult)
+    }
 
-      return simplifiedResult
+      //var firstResult = data.tracks.items[0]
+      //var simplifiedResult = firstResult.name + " - " + firstResult.artists[0].name + " (" + firstResult.album.name + ")" 
+      //console.log(simplifiedResult)
+
+      return simplifiedResults
 
     }
 

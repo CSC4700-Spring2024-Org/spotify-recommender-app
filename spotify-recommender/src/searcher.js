@@ -23,7 +23,10 @@ async function search(accessToken, searchInput) {
 
       // display results of Search
       var firstResult = data.tracks.items[0]
-      console.log(firstResult.name + " - " + firstResult.artists[0].name + " (" + firstResult.album.name + ")" )
+      var simplifiedResult = firstResult.name + " - " + firstResult.artists[0].name + " (" + firstResult.album.name + ")" 
+      console.log(simplifiedResult)
+
+      return simplifiedResult
 
     }
 

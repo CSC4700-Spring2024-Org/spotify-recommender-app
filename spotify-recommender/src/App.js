@@ -28,8 +28,12 @@ function App() {
       .catch(error => console.log(error))
     })
 
-    const handleChange = (value) => {
-      search(accessToken, value)
+    const[results, setResults] = useState("")
+
+    const handleChange = async (value) => {
+      var result = await search(accessToken, value)
+      setResults(result)
+      console.log(results)
     }
 
   return (
@@ -41,6 +45,13 @@ function App() {
         <div className="container" style={{padding: 20}} >
           <input id="searchInput" placeholder='Enter a song...' style={{borderRadius: 5, margin: 3, lineHeight: 1.75}} onChange={event => handleChange(document.getElementById("searchInput").value)}/>
           <button style={{borderRadius: 5, lineHeight: 1.75}} onClick={event => search(accessToken, document.getElementById("searchInput").value)}>Search</button>
+        </div>
+        <div>
+        {results ? (
+                  results
+                ) : (
+                  ""
+                )}
         </div>
       </div>
     </div>

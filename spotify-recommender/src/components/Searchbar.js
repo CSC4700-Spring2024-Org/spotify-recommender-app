@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from "react";
 import { search } from '../searcher.js';
+import SearchResults from './SearchResults.js';
 
 const Searchbar = (accessToken) => {
 
@@ -21,11 +22,7 @@ const Searchbar = (accessToken) => {
             <button style={{borderRadius: 5, lineHeight: 1.75}} onClick={event => search(accessToken, document.getElementById("searchInput").value)}>Search</button>
         </div>
         <div>
-        {results ? (
-                  results
-                ) : (
-                  ""
-                )}
+            <SearchResults results={results} />
         </div>
     </div>
   )

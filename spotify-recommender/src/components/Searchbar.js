@@ -16,17 +16,19 @@ const Searchbar = (accessToken) => {
 
   // render search bar
   return (
-    <div>
-        <div>
-            <input id="searchInput" placeholder='Enter a song...' style={{borderRadius: 5, margin: 3, lineHeight: 1.75, border: 'none', outline: 'none', boxShadow: '0px 0px 8px gray'}} onChange={event => handleChange(document.getElementById("searchInput").value)}/>
+    <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div style={{width: '60%', display: 'flex', flexDirection: 'column'}}>
+          <div style={{display: 'flex', flexDirection:'row'}}>
+            <input id="searchInput" placeholder='Enter a song...' style={{borderRadius: 5, margin: 3, lineHeight: 1.75, border: 'none', outline: 'none', boxShadow: '0px 0px 8px gray', width: '100%'}} onChange={event => handleChange(document.getElementById("searchInput").value)}/>
             <button style={{borderRadius: 5, lineHeight: 1.75, border: 'none', boxShadow: '0px 0px 8px gray'}} onClick={event => search(accessToken, document.getElementById("searchInput").value)}>Search</button>
-            <div style={{display: 'flex', justifyContent: 'center'}}>
-              {results ? (
-                <SearchResults results={results} />
-                ) : (
-                  ""
-                )}
-            </div>
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            {results ? (
+              <SearchResults results={results} />
+              ) : (
+                ""
+              )}
+          </div>
         </div>
     </div>
   )

@@ -1,0 +1,22 @@
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.scroll-container {
+    color: white;
+    width: 100%;
+    white-space: nowrap;
+    text-align: left;
+    animation: 20s slide infinite linear;
+}
+
+.scroll-text {
+    display: inline-block;
+    padding-right: 30%;
+    overflow: hidden;
+}

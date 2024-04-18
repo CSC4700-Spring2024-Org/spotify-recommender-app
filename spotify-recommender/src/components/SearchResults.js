@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './SearchResults.css'
 
 
 const SearchResults = (results) => {
@@ -13,11 +13,11 @@ const SearchResults = (results) => {
 
   // render search results
   return (
-    <div style={{width: '100%', padding: 3, display: 'flex', flexDirection: 'column', boxShadow: '0px 8px 10px gray', borderBottomLeftRadius: 5, borderBottomRightRadius: 5}}>
+    <div className='search-results-container'>
         {results.map((result, i) => (
-          <div style={{padding: 3, display: 'flex', flexDirection: 'row', textAlign: 'left'}} key={i} onClick={event => handleClick(result)}>
+          <div className='search-result-container' key={i} onClick={event => handleClick(result)}>
             <div><img src={result.album.images[0].url} alt={result.album} width='75vm' height='75vm'></img></div>
-            <div style={{display: 'flex', flexDirection:'column', marginLeft: 20}}>
+            <div className='search-result-info'>
               <div style={{fontWeight: 'bold'}}>{result.name}</div>
               <div>{result.artists[0].name}</div>
             </div>

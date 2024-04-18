@@ -23,13 +23,11 @@ const Searchbar = (accessToken) => {
             <input id="searchInput" placeholder='Enter a song...' style={{borderRadius: 5}} onChange={event => handleChange(document.getElementById("searchInput").value)}/>
             <button style={{borderRadius: 5}} onClick={event => search(accessToken, document.getElementById("searchInput").value)}>Search</button>
           </div>
-          <div className="search-results-container">
             {results ? (
               <SearchResults results={results} />
               ) : (
                 ""
               )}
-          </div>
         </div>
     </div>
   )

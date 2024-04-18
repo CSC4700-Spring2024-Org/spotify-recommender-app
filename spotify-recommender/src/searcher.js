@@ -5,8 +5,7 @@ async function search(accessToken, searchInput) {
   var endpoint = "https://api.spotify.com/v1/search"
   var query = searchInput
   var type = "track"
-  var request = endpoint + '?q=' + query + '&type=' + type 
-  console.log("Searching for " + query)
+  var request = endpoint + '?q=' + query + '&type=' + type
 
   var searchParameters = {
     method: 'GET',
@@ -25,7 +24,6 @@ async function search(accessToken, searchInput) {
   // parse + return results of search
   const simplifiedResults = []
   const results = []
-  console.log(data)
   for(var i=0; i < 4; i++) {
     var result = data.tracks.items[i]
     var simplifiedResult = result.name + " - " + result.artists[0].name + " (" + result.album.name + ")\n"

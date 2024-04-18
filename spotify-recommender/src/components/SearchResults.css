@@ -16,6 +16,10 @@
     text-align: left;
 }
 
+.search-result-container:hover {
+    background-color: aliceblue;
+}
+
 .search-result-info {
     display: flex;
     flex-direction: column;

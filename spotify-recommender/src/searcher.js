@@ -24,14 +24,17 @@ async function search(accessToken, searchInput) {
 
   // parse + return results of search
   const simplifiedResults = []
+  const results = []
   console.log(data)
   for(var i=0; i < 4; i++) {
     var result = data.tracks.items[i]
     var simplifiedResult = result.name + " - " + result.artists[0].name + " (" + result.album.name + ")\n"
     simplifiedResults.push(simplifiedResult)
+    results.push(result)
   }
 
-  return simplifiedResults
+  //return simplifiedResults
+  return results
 
 }
 

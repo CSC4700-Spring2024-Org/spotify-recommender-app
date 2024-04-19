@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // You might need to install axios: npm install axios
+import axios from 'axios'; 
 
 const SpotifyAudioFeatures = ({ trackId }) => {
   const [audioFeatures, setAudioFeatures] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const accessToken = accessToken; // Replace with your Spotify access token
+  const accessToken = accessToken; 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +41,7 @@ const SpotifyAudioFeatures = ({ trackId }) => {
 
   if (!audioFeatures) return null;
 
-  // Display the retrieved audio features here (e.g., using JSX)
+  // Display the retrieved audio features here 
   return (
     <div>
       <h2>Audio Features</h2>

@@ -40,7 +40,7 @@ const SpotifyAudioFeatures = ({ accessToken, trackId }) => {
 
   if (!audioFeatures) return null;
 
-  // Display the retrieved audio features here (e.g., using JSX)
+  // Display the retrieved audio features here 
   return (
     <div>
       <h2>Audio Features</h2>

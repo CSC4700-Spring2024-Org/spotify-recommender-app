@@ -10,9 +10,11 @@ const Searchbar = (accessToken) => {
     const[results, setResults] = useState("")
 
     // handle searchbar input changes
-    const handleChange = async (value) => {
-      var result = await search(accessToken, value)
-      setResults(result)
+    const handleSearch = async (searchInput) => {
+      if (searchInput.trim() !== "") {
+        var result = await search(accessToken, searchInput)
+        setResults(result)
+      }
     }
 
   // render search bar
@@ -20,8 +22,8 @@ const Searchbar = (accessToken) => {
     <div className='search-container'>
         <div className='search-bar-container'>
           <div className='search-bar'>
-            <input id="searchInput" placeholder='Enter a song...' style={{borderRadius: 5}} onChange={event => handleChange(document.getElementById("searchInput").value)}/>
-            <button style={{borderRadius: 5}} onClick={event => search(accessToken, document.getElementById("searchInput").value)}>Search</button>
+            <input id="searchInput" placeholder='Enter a song...' style={{borderRadius: 5}} onChange={event => handleSearch(document.getElementById("searchInput").value)}/>
+            <button style={{borderRadius: 5}} onClick={event => handleSearch(document.getElementById("searchInput").value)}>Search</button>
           </div>
             {results ? (
               <SearchResults results={results} />

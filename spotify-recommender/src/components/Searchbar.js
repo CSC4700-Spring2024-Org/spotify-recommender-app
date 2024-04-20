@@ -13,7 +13,9 @@ const Searchbar = (accessToken) => {
     const handleSearch = async (searchInput) => {
       if (searchInput.trim() !== "") {
         var result = await search(accessToken, searchInput)
-        setResults(result)
+        if (result !== "ERROR") {
+          setResults(result)
+        }
       }
     }
 
@@ -25,7 +27,7 @@ const Searchbar = (accessToken) => {
             <input id="searchInput" placeholder='Enter a song...' style={{borderRadius: 5}} onChange={event => handleSearch(document.getElementById("searchInput").value)}/>
             <button style={{borderRadius: 5}} onClick={event => handleSearch(document.getElementById("searchInput").value)}>Search</button>
           </div>
-            {results ? (
+            {results.length > 0 ? (
               <SearchResults results={results} />
               ) : (
                 ""

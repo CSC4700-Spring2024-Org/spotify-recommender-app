@@ -4,6 +4,7 @@ import './SearchResults.css'
 
 const SearchResults = (results) => {
   results = results.results
+  console.log("search results got", results) //for some reason, this log message fixes the keysmash bug
   
   // click on a result
   const handleClick = (result) => {

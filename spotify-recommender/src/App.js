@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Titlebar from "./components/Titlebar.js";
 import Searchbar from "./components/Searchbar.js";
+import SpotifyAudioFeatures from './songFeaturesRetriever.js';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
         <div className="container" style={{padding: 20}} >
           <Searchbar accessToken={accessToken}/>
         </div>
+        <div><SpotifyAudioFeatures accessToken={accessToken} trackId="40riOy7x9W7GXjyGp4pjAv"/></div>
       </div>
     </div>
     

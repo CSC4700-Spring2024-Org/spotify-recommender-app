@@ -1,0 +1,12 @@
+{
+  "name": "spotify-recommender-app",
+  "version": "1.0.0",
+  "description": "A webapp that allows users to pick their favorite audio elements of a song and search for new recommendations based on this.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

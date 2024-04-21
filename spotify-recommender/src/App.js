@@ -11,9 +11,20 @@ function App() {
   const CLIENT_ID = "459618efb1c940028bc3a20817de0916"
   const CLIENT_SECRET = "1c7760f078134186b654ec52d4ac0bad"
 
-  // requests Access Token
   const[accessToken, setAccessToken] = useState("");
+  //const[selectedTrack, setSelectedTrack] = useState();
 
+  //const updateSelectedTrack = () => {
+  //  console.log("update selected track")
+  //  setSelectedTrack()
+  //  setSelectedTrack(trackId)
+  //}
+
+  var selectedTrack;
+  selectedTrack = "40riOy7x9W7GXjyGp4pjAv"
+
+
+  // requests Access Token
   useEffect(() => {
     var authParameters = {
         method: 'POST',
@@ -39,7 +50,13 @@ function App() {
         <div className="container" style={{padding: 20}} >
           <Searchbar accessToken={accessToken}/>
         </div>
-        <div><SpotifyAudioFeatures accessToken={accessToken} trackId="40riOy7x9W7GXjyGp4pjAv"/></div>
+        <div>
+        {selectedTrack ? (
+              <SpotifyAudioFeatures accessToken={accessToken} trackId={selectedTrack}/>
+              ) : (
+                ""
+              )}
+        </div>
         <div><button style={{borderRadius: 5}} onClick={event => console.log('clicked!')}>Test Recommend</button></div>
       </div>
     </div>

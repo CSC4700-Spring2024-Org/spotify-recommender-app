@@ -9,13 +9,17 @@ const Searchbar = (accessToken) => {
     accessToken = accessToken.accessToken
     const[results, setResults] = useState("")
 
+    const clearResults= async () => {
+      setResults([])
+    }
+
     // handle searchbar input changes
     const handleSearch = async (searchInput) => {
       if (searchInput.trim() !== "") {
         var result = await search(accessToken, searchInput)
         setResults(result)
       } else {
-        setResults([])
+        clearResults()
       }
     }
 

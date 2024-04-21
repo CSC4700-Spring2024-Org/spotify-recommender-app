@@ -1,5 +1,6 @@
 import React from 'react'
 import './SearchResults.css'
+import Searchbar from './Searchbar'
 
 
 const SearchResults = (results) => {
@@ -10,6 +11,7 @@ const SearchResults = (results) => {
   const handleClick = (result) => {
     console.log("Clicked on", result.name)
     console.log("song ID =", result.id)
+    Searchbar.clearResults()
   }
 
   // render search results

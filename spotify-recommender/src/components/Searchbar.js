@@ -13,9 +13,9 @@ const Searchbar = (accessToken) => {
     const handleSearch = async (searchInput) => {
       if (searchInput.trim() !== "") {
         var result = await search(accessToken, searchInput)
-        if (result !== "ERROR") {
-          setResults(result)
-        }
+        setResults(result)
+      } else {
+        setResults([])
       }
     }
 

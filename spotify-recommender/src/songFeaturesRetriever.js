@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // You might need to install axios: npm install axios
-                          //and url: npm install url
+import axios from 'axios'; 
 
-const SpotifyAudioFeatures = ({ accessToken, trackId }) => {
+const SpotifyAudioFeatures = ({ trackId }) => {
   const [audioFeatures, setAudioFeatures] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const accessToken = accessToken; 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,12 +41,22 @@ const SpotifyAudioFeatures = ({ accessToken, trackId }) => {
 
   if (!audioFeatures) return null;
 
-  // Display the retrieved audio features here 
+  // Display the retrieved audio features here (e.g., using JSX)
   return (
     <div>
       <h2>Audio Features</h2>
       <p>Danceability: {audioFeatures.danceability}</p>
       <p>Energy: {audioFeatures.energy}</p>
+      <p>Acousticness: {audioFeatures.aucousticness}</p>
+      <p>Instrumentallness: {audioFeatures.instrumentalness}</p>
+      <p>Key: {audioFeatures.key}</p>
+      <p>Liveness: {audioFeatures.liveness}</p>
+      <p>Loudness: {audioFeatures.loudness}</p>
+      <p>Mode: {audioFeatures.mode}</p>
+      <p>Speechiness: {audioFeatures.speechiness}</p>
+      <p>Tempo: {audioFeatures.tempo}</p>
+      <p>Time Signature: {audioFeatures.time_signature}</p>
+      <p>Valence(postitivity): {audioFeatures.valence}</p>
       {/* Display other features as needed */}
     </div>
   );

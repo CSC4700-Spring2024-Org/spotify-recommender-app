@@ -27,26 +27,26 @@ async function getRecommendations(accessToken, searchInput) {
   var time = "time"
   var valence = "valence"
   
-  var params = new searchParameters({
+  var searchParameters = {
     market: market,
     seed_artists: seed_artists,
     seed_genres: seed_genres,
     seed_tracks: seed_tracks,
-    target_acousticness: target_accousticness,
+    target_acousticness: target_acousticness,
     target_daceability: target_danceability,
     target_energy: target_energy,
     target_duration: target_duration,
     instrumentalness: instrumentalness,
     key: key,
     live: live,
-    loud: loudness,
-    mode: modeness,
+    loud: loud,
+    mode: mode,
     popularity: popularity,
     speechiness: speechiness,
     tempo: tempo,
     time: time,
     valence: valence
-  })
+  }
 
   var getUrl = `${url}?${searchParameters.toString()}`
   console.log("Using url" + getUrl)
@@ -74,7 +74,7 @@ var info = await errorCatch.json()
 const responseResults = []
 console.log(info)
 
-for(i = 0; i < 4; i++){
+for(var i = 0; i < 4; i++){
   var result = info.tracks.items[i]
   responseResults.push(result)
 }

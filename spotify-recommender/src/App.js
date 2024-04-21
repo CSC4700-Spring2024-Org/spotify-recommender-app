@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Titlebar from "./components/Titlebar.js";
 import Searchbar from "./components/Searchbar.js";
 import SpotifyAudioFeatures from './songFeaturesRetriever.js';
+import getRecommendations from './recommender.js';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
           <Searchbar accessToken={accessToken}/>
         </div>
         <div><SpotifyAudioFeatures accessToken={accessToken} trackId="40riOy7x9W7GXjyGp4pjAv"/></div>
+        <div><button style={{borderRadius: 5}} onClick={event => console.log('clicked!')}>Test Recommend</button></div>
       </div>
     </div>
     

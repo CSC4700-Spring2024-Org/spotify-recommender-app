@@ -1,7 +1,12 @@
 // search Spotify API based on searchInput
 async function getRecommendations(accessToken, searchInput) {
-     
+   //click on checkbox, search by some features. might be if and-logic then. do a dynamic list
+   //switch for thw white part
   // set up API query
+  //look at wireframe
+  //print to console
+  //only use target
+  //git pull before change, git push after
   var url = "https://api.spotify.com/v1/recommendations";
   var market = "US"
   var seed_artists = searchInput;

@@ -1,40 +1,46 @@
-import React from 'react'
-import { useState } from "react";
+import React, { useState } from 'react';
 import { search } from '../searcher.js';
 import SearchResults from './SearchResults.js';
+import SpotifyAudioFeatures from './songFeaturesRetriever.js'; // Ensure this is correctly imported
 import './Searchbar.css';
 
-const Searchbar = (accessToken) => {
+const Searchbar = ({ accessToken }) => {
+    const [results, setResults] = useState([]);
+    const [selectedTrackId, setSelectedTrackId] = useState(null);
 
-    accessToken = accessToken.accessToken
-    const[results, setResults] = useState("")
-
-    // handle searchbar input changes
     const handleSearch = async (searchInput) => {
-      if (searchInput.trim() !== "") {
-        var result = await search(accessToken, searchInput)
-        if (result !== "ERROR") {
-          setResults(result)
+        if (searchInput.trim() !== "") {
+            const result = await search(accessToken, searchInput);
+            if (result !== "ERROR") {
+                setResults(result);
+            }
         }
-      }
-    }
+    };
 
-  // render search bar
-  return (
-    <div className='search-container'>
-        <div className='search-bar-container'>
-          <div className='search-bar'>
-            <input id="searchInput" placeholder='Enter a song...' style={{borderRadius: 5}} onChange={event => handleSearch(document.getElementById("searchInput").value)}/>
-            <button style={{borderRadius: 5}} onClick={event => handleSearch(document.getElementById("searchInput").value)}>Search</button>
-          </div>
-            {results.length > 0 ? (
-              <SearchResults results={results} />
-              ) : (
-                ""
-              )}
+    return (
+        <div className='search-container'>
+            <div className='search-bar-container'>
+                <div className='search-bar'>
+                    <input
+                        id="searchInput"
+                        placeholder='Enter a song...'
+                        style={{ borderRadius: 5 }}
+                        onChange={(event) => handleSearch(event.target.value)}
+                    />
+                    <button style={{ borderRadius: 5 }} onClick={() => handleSearch(document.getElementById("searchInput").value)}>Search</button>
+                </div>
+                {results.length > 0 && (
+                    <SearchResults results={results} setSearchTrackId={setSelectedTrackId} />
+                )}
+            </div>
+            {selectedTrackId && (
+                <SpotifyAudioFeatures
+                  trackId={selectedTrackId}
+                  accessToken={accessToken}
+              />
+            )}
         </div>
-    </div>
-  )
-}
+    );
+};
 
-export default Searchbar
+export default Searchbar;

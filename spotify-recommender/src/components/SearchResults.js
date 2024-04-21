@@ -1,8 +1,7 @@
 import React from 'react'
 import './SearchResults.css'
 
-
-const SearchResults = (results) => {
+const SearchResults = (results, setSearchTrackId) => {
   results = results.results
   console.log("search results got", results) //for some reason, this log message fixes the keysmash bug
   
@@ -10,6 +9,7 @@ const SearchResults = (results) => {
   const handleClick = (result) => {
     console.log("Clicked on", result.name)
     console.log("song ID =", result.id)
+    setSearchTrackId(result.id); // Call Searchbar function
   }
 
   // render search results

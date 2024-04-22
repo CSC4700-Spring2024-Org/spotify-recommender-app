@@ -13,9 +13,14 @@ function App() {
 
   const[accessToken, setAccessToken] = useState("");
   const[selectedTrack, setSelectedTrack] = useState("");
+  const[selectedResult, setSelectedResult] = useState("");
 
   const selectTrack = (trackId) => {
     setSelectedTrack(trackId)
+  }
+
+  const selectResult = (result) => {
+    setSelectedResult(result)
   }
 
   // requests Access Token
@@ -42,16 +47,22 @@ function App() {
           <Titlebar />
         </div>
         <div className="container" style={{padding: 20}} >
-          <Searchbar accessToken={accessToken} selectTrack={selectTrack}/>
+          <Searchbar accessToken={accessToken} selectTrack={selectTrack} selectResult={selectResult}/>
         </div>
         <div>
         {selectedTrack ? (
-              <SpotifyAudioFeatures accessToken={accessToken} trackId={selectedTrack}/>
+              <SpotifyAudioFeatures accessToken={accessToken} trackId={selectedTrack} selectedResult={selectedResult}/>
               ) : (
                 ""
               )}
         </div>
         <div><button style={{borderRadius: 5}} onClick={() => getRecommendations()}>Test Recommend</button></div>
+        <div>{selectedResult ? (
+           selectedResult.artists[0].name
+          ) : (
+          ""
+        )}
+       </div>
       </div>
     </div>
     

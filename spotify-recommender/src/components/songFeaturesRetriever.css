@@ -1,0 +1,10 @@
+.audio-features-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: left;
+}
+
+.audio-features-info {
+    padding-left: 10px;
+}

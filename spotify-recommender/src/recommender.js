@@ -84,5 +84,5 @@ catch(errorCatch){
   return []
 }
 }
-module.exports = {getRecommendations}
 
+export  { getRecommendations };

@@ -4,7 +4,7 @@ import { search } from '../searcher.js';
 import SearchResults from './SearchResults.js';
 import './Searchbar.css';
 
-const Searchbar = ({accessToken, selectTrack}) => {
+const Searchbar = ({accessToken, selectTrack, selectResult}) => {
 
     const[results, setResults] = useState("")
 
@@ -31,7 +31,12 @@ const Searchbar = ({accessToken, selectTrack}) => {
             <button style={{borderRadius: 5}} onClick={event => handleSearch(document.getElementById("searchInput").value)}>Search</button>
           </div>
             {results.length > 0 ? (
-              <SearchResults results={results} selectTrack={selectTrack}/>
+              <SearchResults 
+                results={results}
+                selectTrack={selectTrack}
+                clearResults={clearResults}
+                selectResult={selectResult}
+              />
               ) : (
                 ""
               )}

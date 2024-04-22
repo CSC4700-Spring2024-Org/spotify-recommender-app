@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const SpotifyAudioFeatures = ({ accessToken, trackId }) => {
+const SpotifyAudioFeatures = ({ accessToken, trackId, result }) => {
   const [audioFeatures, setAudioFeatures] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);

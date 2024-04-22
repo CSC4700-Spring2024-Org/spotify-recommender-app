@@ -24,9 +24,9 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, result }) => {
         setAudioFeatures(response.data);
         // Initialize all features as not selected
         setSelectedFeatures({
+          acousticness: false,
           danceability: false,
           energy: false,
-          acousticness: false,
           instrumentalness: false,
           key: false,
           liveness: false,

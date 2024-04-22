@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; 
+import axios from 'axios';
 import './songFeaturesRetriever.css';
 
 const SpotifyAudioFeatures = ({ accessToken, trackId, result }) => {
   const [audioFeatures, setAudioFeatures] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [selectedFeatures, setSelectedFeatures] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +23,21 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, result }) => {
           }
         );
         setAudioFeatures(response.data);
+        // Initialize all features as not selected
+        setSelectedFeatures({
+          danceability: false,
+          energy: false,
+          acousticness: false,
+          instrumentalness: false,
+          key: false,
+          liveness: false,
+          loudness: false,
+          mode: false,
+          speechiness: false,
+          tempo: false,
+          time_signature: false,
+          valence: false
+        });
       } catch (error) {
         setError(error);
       } finally {
@@ -34,17 +50,26 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, result }) => {
     }
   }, [trackId, accessToken]);
 
+  const handleCheckboxChange = (feature) => {
+    setSelectedFeatures(prevState => ({
+      ...prevState,
+      [feature]: !prevState[feature]
+    }));
+  };
+
+  const handleSubmit = () => {
+    // Convert selected features into an array of booleans
+    const featuresArray = Object.values(selectedFeatures);
+    console.log(featuresArray); 
+  };
+
   if (isLoading) return <div>Loading audio features...</div>;
-
   if (error) return <div>Error: {error.message}</div>;
-
   if (!audioFeatures) return null;
 
-  // Display the retrieved audio features here (e.g., using JSX)
   return (
     <div>
       <h2>Audio Features</h2>
-
       {/* adding outline for html/css format */}
       <div className='audio-features-container'>
         <div className='album-cover'>album img</div>
@@ -57,21 +82,16 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, result }) => {
           </div>
         </div>
       </div>
-
-
-      <p>Danceability: {audioFeatures.danceability}</p>
-      <p>Energy: {audioFeatures.energy}</p>
-      <p>Acousticness: {audioFeatures.aucousticness}</p>
-      <p>Instrumentallness: {audioFeatures.instrumentalness}</p>
-      <p>Key: {audioFeatures.key}</p>
-      <p>Liveness: {audioFeatures.liveness}</p>
-      <p>Loudness: {audioFeatures.loudness}</p>
-      <p>Mode: {audioFeatures.mode}</p>
-      <p>Speechiness: {audioFeatures.speechiness}</p>
-      <p>Tempo: {audioFeatures.tempo}</p>
-      <p>Time Signature: {audioFeatures.time_signature}</p>
-      <p>Valence(postitivity): {audioFeatures.valence}</p>
-      {/* Display other features as needed */}
+      {Object.keys(selectedFeatures).map((feature) => (
+        <div key={feature}>
+          <input
+            type="checkbox"
+            checked={selectedFeatures[feature]}
+            onChange={() => handleCheckboxChange(feature)}
+          /> {feature.charAt(0).toUpperCase() + feature.slice(1)}: {audioFeatures[feature]}
+        </div>
+      ))}
+      <button onClick={handleSubmit}>Confirm Features</button>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './songFeaturesRetriever.css';
 
 const SpotifyAudioFeatures = ({ accessToken, trackId, result }) => {
   const [audioFeatures, setAudioFeatures] = useState(null);
@@ -24,9 +25,9 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, result }) => {
         setAudioFeatures(response.data);
         // Initialize all features as not selected
         setSelectedFeatures({
+          acousticness: false,
           danceability: false,
           energy: false,
-          acousticness: false,
           instrumentalness: false,
           key: false,
           liveness: false,
@@ -69,16 +70,27 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, result }) => {
   return (
     <div>
       <h2>Audio Features</h2>
-      {Object.keys(selectedFeatures).map((feature) => (
-        <div key={feature}>
-          <input
-            type="checkbox"
-            checked={selectedFeatures[feature]}
-            onChange={() => handleCheckboxChange(feature)}
-          /> {feature.charAt(0).toUpperCase() + feature.slice(1)}: {audioFeatures[feature]}
+      {/* adding outline for html/css format */}
+      <div className='audio-features-container'>
+        <div className='album-cover'>album img</div>
+        <div className='audio-info'>
+          <div style={{fontWeight: 'bold'}}>song</div>
+          <div>result.artists[0].name</div>
+          <div className='audio-features'>
+            {Object.keys(selectedFeatures).map((feature) => (
+              <div key={feature}>
+                <input
+                  type="checkbox"
+                  checked={selectedFeatures[feature]}
+                  onChange={() => handleCheckboxChange(feature)}
+                /> {feature.charAt(0).toUpperCase() + feature.slice(1)}: {audioFeatures[feature]}
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
-      <button onClick={handleSubmit}>Confirm Features</button>
+        <button style={{height: 35, borderRadius: 5}} onClick={handleSubmit}>Confirm Features</button>
+      </div>
+      
     </div>
   );
 };

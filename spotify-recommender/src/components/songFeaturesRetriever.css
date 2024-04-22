@@ -5,6 +5,11 @@
     text-align: left;
 }
 
-.audio-features-info {
+.audio-info {
     padding-left: 10px;
+    flex-direction: row;
+}
+
+.audio-features {
+    flex-direction: row;
 }

@@ -7,6 +7,7 @@ async function search(accessToken, searchInput) {
   var type = "track"
   var request = endpoint + '?q=' + query + '&type=' + type
 
+
   var searchParameters = {
     method: 'GET',
     headers: {
@@ -22,11 +23,15 @@ async function search(accessToken, searchInput) {
     .catch(error => console.log(error))
 
   // parse + return results of search
+  
   const results = []
-  for(var i=0; i < 4; i++) {
-    var result = data.tracks.items[i]
-    results.push(result)
-  }
+  if (data.tracks.items.length > 0) {
+    for(var i=0; i < 4; i++) {
+      var result = data.tracks.items[i]
+      results.push(result)
+    }
+  } //else: no results
+
 
   return results
 

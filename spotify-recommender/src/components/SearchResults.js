@@ -2,13 +2,16 @@ import React from 'react'
 import './SearchResults.css'
 
 
-const SearchResults = (results) => {
-  results = results.results
+const SearchResults = ({results, selectTrack, clearResults, selectResult}) => {
+  //console.log("search results got", results) //for some reason, this log message fixes the keysmash bug
   
   // click on a result
   const handleClick = (result) => {
     console.log("Clicked on", result.name)
     console.log("song ID =", result.id)
+    selectTrack(result.id)
+    selectResult(result)
+    clearResults()
   }
 
   // render search results

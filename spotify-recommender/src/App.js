@@ -3,15 +3,32 @@ import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Titlebar from "./components/Titlebar.js";
 import Searchbar from "./components/Searchbar.js";
+import SpotifyAudioFeatures from './components/songFeaturesRetriever.js';
+import { getRecommendations } from './recommender.js';
 
 function App() {
 
   const CLIENT_ID = "459618efb1c940028bc3a20817de0916"
   const CLIENT_SECRET = "1c7760f078134186b654ec52d4ac0bad"
 
-  // requests Access Token
   const[accessToken, setAccessToken] = useState("");
+  const[selectedTrack, setSelectedTrack] = useState("");
+  const[selectedResult, setSelectedResult] = useState("");
+  const[selectedFeaturesArray, setSelectedFeaturesArray] = useState("");
 
+  const selectTrack = (trackId) => {
+    setSelectedTrack(trackId)
+  }
+
+  const selectResult = (result) => {
+    setSelectedResult(result)
+  }
+
+  const setFeaturesArray = (featuresArray) => {
+    setSelectedFeaturesArray(featuresArray)
+  }
+
+  // requests Access Token
   useEffect(() => {
     var authParameters = {
         method: 'POST',
@@ -35,8 +52,16 @@ function App() {
           <Titlebar />
         </div>
         <div className="container" style={{padding: 20}} >
-          <Searchbar accessToken={accessToken}/>
+          <Searchbar accessToken={accessToken} selectTrack={selectTrack} selectResult={selectResult}/>
         </div>
+        <div>
+        {selectedTrack ? (
+              <SpotifyAudioFeatures accessToken={accessToken} trackId={selectedTrack} selectedResult={selectedResult} setFeaturesArray={setFeaturesArray}/>
+              ) : (
+                ""
+              )}
+        </div>
+        <div><button style={{borderRadius: 5}} onClick={() => getRecommendations(accessToken, selectedTrack, selectedFeaturesArray)}>Test Recommend</button></div>
       </div>
     </div>
     

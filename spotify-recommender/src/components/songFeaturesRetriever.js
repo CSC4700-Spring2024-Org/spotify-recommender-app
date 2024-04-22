@@ -61,6 +61,7 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, selectedResult, setFeature
     // Convert selected features into an array of booleans
     const featuresArray = Object.values(selectedFeatures);
     setFeaturesArray(featuresArray);
+    console.log("features array:", featuresArray)
   };
 
   if (isLoading) return <div>Loading audio features...</div>;

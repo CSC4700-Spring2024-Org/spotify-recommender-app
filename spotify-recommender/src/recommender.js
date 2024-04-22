@@ -51,9 +51,9 @@ async function getRecommendations(accessToken, searchInput, selectedFeaturesArra
 
 
   //const getUrl = `${url}?${searchParameters.toString()}`
-  console.log("features array:", selectedFeaturesArray)
+  console.log("recommender got features array", selectedFeaturesArray)
   const getUrl = url + "?seed_tracks=" + seed_tracks + "&target_instrumentalness=" + 0.5 + "&target_loudness=" + 0.5
-  console.log("Using url" + getUrl)
+  console.log("Using url", getUrl)
 
   //target attributes, and seed track
 //consol log request
@@ -77,7 +77,7 @@ var info = await fetch(getUrl, headers)
   .then(info => { return info })
   .catch(error => console.log(error))
 
-  console.log(info)
+  console.log("recommendations:",info)
 }
 catch(error){
   console.error('Return error', error)

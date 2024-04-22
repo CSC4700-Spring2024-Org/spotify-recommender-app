@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './songFeaturesRetriever.css';
 
-const SpotifyAudioFeatures = ({ accessToken, trackId, result }) => {
+const SpotifyAudioFeatures = ({ accessToken, trackId, selectedResult }) => {
   const [audioFeatures, setAudioFeatures] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -72,10 +72,10 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, result }) => {
       <h2>Audio Features</h2>
       {/* adding outline for html/css format */}
       <div className='audio-features-container'>
-        <div className='album-cover'>album img</div>
+        <div className='album-cover'><img src={selectedResult.album.images[0].url} alt={selectedResult.album} width='75vm' height='75vm'></img></div>
         <div className='audio-info'>
-          <div style={{fontWeight: 'bold'}}>song</div>
-          <div>result.artists[0].name</div>
+          <div style={{fontWeight: 'bold'}}>{selectedResult.name}</div>
+          <div>{selectedResult.artists[0].name}</div>
           <div className='audio-features'>
             {Object.keys(selectedFeatures).map((feature) => (
               <div key={feature}>

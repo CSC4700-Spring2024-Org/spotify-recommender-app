@@ -14,6 +14,7 @@ function App() {
   const[accessToken, setAccessToken] = useState("");
   const[selectedTrack, setSelectedTrack] = useState("");
   const[selectedResult, setSelectedResult] = useState("");
+  const[selectedFeaturesArray, setSelectedFeaturesArray] = useState("");
 
   const selectTrack = (trackId) => {
     setSelectedTrack(trackId)
@@ -21,6 +22,11 @@ function App() {
 
   const selectResult = (result) => {
     setSelectedResult(result)
+  }
+
+  const setFeaturesArray = (featuresArray) => {
+    setSelectedFeaturesArray(featuresArray)
+    console.log(featuresArray)
   }
 
   // requests Access Token
@@ -51,7 +57,7 @@ function App() {
         </div>
         <div>
         {selectedTrack ? (
-              <SpotifyAudioFeatures accessToken={accessToken} trackId={selectedTrack} selectedResult={selectedResult}/>
+              <SpotifyAudioFeatures accessToken={accessToken} trackId={selectedTrack} selectedResult={selectedResult} setFeaturesArray={setFeaturesArray}/>
               ) : (
                 ""
               )}

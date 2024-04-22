@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './songFeaturesRetriever.css';
 
-const SpotifyAudioFeatures = ({ accessToken, trackId, selectedResult }) => {
+const SpotifyAudioFeatures = ({ accessToken, trackId, selectedResult, setFeaturesArray }) => {
   const [audioFeatures, setAudioFeatures] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -60,7 +60,7 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, selectedResult }) => {
   const handleSubmit = () => {
     // Convert selected features into an array of booleans
     const featuresArray = Object.values(selectedFeatures);
-    console.log(featuresArray); 
+    setFeaturesArray(featuresArray);
   };
 
   if (isLoading) return <div>Loading audio features...</div>;

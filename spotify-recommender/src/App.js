@@ -15,6 +15,7 @@ function App() {
   const[selectedTrack, setSelectedTrack] = useState("");
   const[selectedResult, setSelectedResult] = useState("");
   const[selectedFeaturesArray, setSelectedFeaturesArray] = useState("");
+  const[recommendations, setRecommendations] = useState("");
 
   const selectTrack = (trackId) => {
     setSelectedTrack(trackId)
@@ -26,6 +27,12 @@ function App() {
 
   const setFeaturesArray = (featuresArray) => {
     setSelectedFeaturesArray(featuresArray)
+  }
+
+  const clickRecommend = async () => {
+    var recommendationResults = await getRecommendations(accessToken, selectedTrack, selectedFeaturesArray)
+    setRecommendations(recommendationResults)
+    console.log(recommendations)
   }
 
   // requests Access Token
@@ -61,7 +68,7 @@ function App() {
                 ""
               )}
         </div>
-        <div><button style={{borderRadius: 5}} onClick={() => getRecommendations(accessToken, selectedTrack, selectedFeaturesArray)}>Test Recommend</button></div>
+        <div><button style={{borderRadius: 5}} onClick={() => clickRecommend()}>Test Recommend</button></div>
       </div>
     </div>
     

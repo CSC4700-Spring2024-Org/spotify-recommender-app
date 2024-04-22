@@ -78,6 +78,7 @@ var info = await fetch(getUrl, headers)
   .catch(error => console.log(error))
 
   console.log("recommendations:",info)
+  return(info)
 }
 catch(error){
   console.error('Return error', error)

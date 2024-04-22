@@ -1,30 +1,35 @@
 // search Spotify API based on searchInput
 async function getRecommendations(accessToken, searchInput) {
-     
+   //click on checkbox, search by some features. might be if and-logic then. do a dynamic list
+   //switch for thw white part
   // set up API query
-  var url = "https://api.spotify.com/v1/recommendations";
-  var market = "US"
-  var seed_artists = searchInput;
-  var seed_genres = ""
-  var seed_tracks = ""
-  var target_acousticness = "target accousticness"
-  var target_danceability ="target danceability"
-  var target_energy = "target energy"
-  var target_duration = "target duration"
-  var instrumentalness = "instrumentalness"
-  var key = "key"
-  var live = "live"
-  var loud = "loudness"
-  var mode = "modeness"
-  var popularity = "popularity"
-  var speechiness = "speechiness"
-  var tempo = "tempo"
-  var time = "time"
-  var valence = "valence"
+  //look at wireframe
+  //print to console
+  //only use target
+  //git pull before change, git push after
+  const url = "https://api.spotify.com/v1/recommendations";
+  const market = "US"
+  const seed_artists = searchInput;
+  const seed_genres = ""
+  const seed_tracks = ""
+  const target_acousticness = "target accousticness"
+  const target_danceability ="target danceability"
+  const target_energy = "target energy"
+  const target_duration = "target duration"
+  const instrumentalness = "instrumentalness"
+  const key = "key"
+  const live = "live"
+  const loud = "loudness"
+  const mode = "modeness"
+  const popularity = "popularity"
+  const speechiness = "speechiness"
+  const tempo = "tempo"
+  const time = "time"
+  const valence = "valence"
   
-  var searchParameters = {
-    market: market,
-    seed_artists: seed_artists,
+  const searchParameters = {
+    market: "US",
+    seed_artists: searchInput,
     seed_genres: seed_genres,
     seed_tracks: seed_tracks,
     target_acousticness: target_acousticness,
@@ -43,12 +48,12 @@ async function getRecommendations(accessToken, searchInput) {
     valence: valence
   }
 
-  var getUrl = `${url}?${searchParameters.toString()}`
+  const getUrl = `${url}?${searchParameters.toString()}`
   console.log("Using url" + getUrl)
 
   //target attributes, and seed track
 //consol log request
-var output = {
+const headers = {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
@@ -57,7 +62,7 @@ var output = {
 }
 
 try{
-  var errorCatch = await fetch(getUrl, output)
+  const errorCatch = await fetch(getUrl, { method: 'GET', headers: headers })
     if(!errorCatch.ok){
       throw new Error(`Error: ${getUrl.status}`)
     }
@@ -66,21 +71,18 @@ try{
 
 var info = await errorCatch.json()
 
-const responseResults = []
-console.log(info)
-
 for(var i = 0; i < 4; i++){
-  var result = info.tracks.items[i]
+  var result = info.tracks.item[i]
   responseResults.push(result)
 }
-var newResults = '${result.name} - ${result.artists[0].name} - (${result.album.name\n})';
-responseResults.push(newresponseResults)
-return newresponseResults
+const responseResults = info.tracks.items.map(item => `${item.name} - ${item.artists[0]} - (${item.album.name}`)
+console.log(responseResults)
+return responseResults
 }
 catch(errorCatch){
   console.errorCatch('Return error', errorCatch)
   return []
 }
 }
-(`module.exports = {getRecommendations}`)
+module.exports = {getRecommendations}
 

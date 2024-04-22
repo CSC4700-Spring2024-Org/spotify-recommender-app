@@ -44,6 +44,18 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, result }) => {
   return (
     <div>
       <h2>Audio Features</h2>
+
+      {/* adding outline for html/css format */}
+      <div className='audio-features-container'>
+        <div className='album-cover'>album cover</div>
+        <div className='audio-features-info'>
+          <div style={{fontWeight: 'bold'}}>song</div>
+          <div>artist</div>
+          <div>features go here</div>
+        </div>
+      </div>
+
+
       <p>Danceability: {audioFeatures.danceability}</p>
       <p>Energy: {audioFeatures.energy}</p>
       <p>Acousticness: {audioFeatures.aucousticness}</p>

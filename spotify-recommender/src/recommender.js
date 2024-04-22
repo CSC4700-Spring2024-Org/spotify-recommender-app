@@ -70,9 +70,9 @@ try{
   //   if(!errorCatch.ok){
   //     throw new Error(`Error: ${getUrl.status}`)
   //   }
-  console.log("headers:", headers)
+
 var info = await fetch(getUrl, headers)
-  .then(response => response.json)
+  .then(response => response.json())
   .then(info => { return info })
   .catch(error => console.log(error))
 

@@ -45,7 +45,7 @@ const SpotifyAudioFeatures = ({ accessToken, trackId }) => {
       <h2>Audio Features</h2>
       <p>Danceability: {audioFeatures.danceability}</p>
       <p>Energy: {audioFeatures.energy}</p>
-      <p>Acousticness: {audioFeatures.aucousticness}</p>
+      <p>Acousticness: {audioFeatures.acousticness}</p>
       <p>Instrumentallness: {audioFeatures.instrumentalness}</p>
       <p>Key: {audioFeatures.key}</p>
       <p>Liveness: {audioFeatures.liveness}</p>

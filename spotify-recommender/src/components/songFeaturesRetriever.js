@@ -76,22 +76,21 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, result }) => {
         <div className='audio-info'>
           <div style={{fontWeight: 'bold'}}>song</div>
           <div>result.artists[0].name</div>
-          <div className='audio-features'>features go here
-            <div>left col</div>
-            <div>right col</div>
+          <div className='audio-features'>
+            {Object.keys(selectedFeatures).map((feature) => (
+              <div key={feature}>
+                <input
+                  type="checkbox"
+                  checked={selectedFeatures[feature]}
+                  onChange={() => handleCheckboxChange(feature)}
+                /> {feature.charAt(0).toUpperCase() + feature.slice(1)}: {audioFeatures[feature]}
+              </div>
+            ))}
           </div>
         </div>
+        <button style={{height: 35, borderRadius: 5}} onClick={handleSubmit}>Confirm Features</button>
       </div>
-      {Object.keys(selectedFeatures).map((feature) => (
-        <div key={feature}>
-          <input
-            type="checkbox"
-            checked={selectedFeatures[feature]}
-            onChange={() => handleCheckboxChange(feature)}
-          /> {feature.charAt(0).toUpperCase() + feature.slice(1)}: {audioFeatures[feature]}
-        </div>
-      ))}
-      <button onClick={handleSubmit}>Confirm Features</button>
+      
     </div>
   );
 };

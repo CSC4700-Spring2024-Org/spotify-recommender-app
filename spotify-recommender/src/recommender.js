@@ -1,5 +1,5 @@
 // search Spotify API based on searchInput
-async function getRecommendations(accessToken, searchInput) {
+async function getRecommendations(accessToken, searchInput, selectedFeaturesArray) {
    //click on checkbox, search by some features. might be if and-logic then. do a dynamic list
    //switch for thw white part
   // set up API query
@@ -51,6 +51,7 @@ async function getRecommendations(accessToken, searchInput) {
 
 
   //const getUrl = `${url}?${searchParameters.toString()}`
+  console.log("features array:", selectedFeaturesArray)
   const getUrl = url + "?seed_tracks=" + seed_tracks + "&target_instrumentalness=" + 0.5 + "&target_loudness=" + 0.5
   console.log("Using url" + getUrl)
 

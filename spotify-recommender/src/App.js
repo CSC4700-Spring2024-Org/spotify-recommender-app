@@ -26,7 +26,6 @@ function App() {
 
   const setFeaturesArray = (featuresArray) => {
     setSelectedFeaturesArray(featuresArray)
-    console.log(featuresArray)
   }
 
   // requests Access Token
@@ -62,7 +61,7 @@ function App() {
                 ""
               )}
         </div>
-        <div><button style={{borderRadius: 5}} onClick={() => getRecommendations(accessToken, selectedTrack)}>Test Recommend</button></div>
+        <div><button style={{borderRadius: 5}} onClick={() => getRecommendations(accessToken, selectedTrack, selectedFeaturesArray)}>Test Recommend</button></div>
       </div>
     </div>
     

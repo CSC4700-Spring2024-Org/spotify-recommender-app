@@ -56,7 +56,7 @@ function App() {
                 ""
               )}
         </div>
-        <div><button style={{borderRadius: 5}} onClick={() => getRecommendations()}>Test Recommend</button></div>
+        <div><button style={{borderRadius: 5}} onClick={() => getRecommendations(accessToken, selectedTrack)}>Test Recommend</button></div>
         <div>{selectedResult ? (
            selectedResult.artists[0].name
           ) : (

@@ -7,6 +7,7 @@ async function search(accessToken, searchInput) {
   var type = "track"
   var request = endpoint + '?q=' + query + '&type=' + type
 
+
   var searchParameters = {
     method: 'GET',
     headers: {

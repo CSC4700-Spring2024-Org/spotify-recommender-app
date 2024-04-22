@@ -11,7 +11,7 @@ async function getRecommendations(accessToken, searchInput) {
   const market = "US"
   const seed_artists = searchInput;
   const seed_genres = ""
-  const seed_tracks = ""
+  const seed_tracks = "2QTDuJIGKUjR7E2Q6KupIh"
   const target_acousticness = "target accousticness"
   const target_danceability ="target danceability"
   const target_energy = "target energy"
@@ -48,7 +48,10 @@ async function getRecommendations(accessToken, searchInput) {
     valence: valence
   }
 
-  const getUrl = `${url}?${searchParameters.toString()}`
+
+
+  //const getUrl = `${url}?${searchParameters.toString()}`
+  const getUrl = url + "?seed_tracks=" + seed_tracks + "&target_instrumentalness=" + 0.5 + "&target_loudness=" + 0.5
   console.log("Using url" + getUrl)
 
   //target attributes, and seed track
@@ -61,26 +64,35 @@ const headers = {
   }
 }
 
+
 try{
-  const errorCatch = await fetch(getUrl, { method: 'GET', headers: headers })
-    if(!errorCatch.ok){
-      throw new Error(`Error: ${getUrl.status}`)
-    }
+  // const errorCatch = await fetch(getUrl, headers)
+  //   if(!errorCatch.ok){
+  //     throw new Error(`Error: ${getUrl.status}`)
+  //   }
   
+var info = await fetch(getUrl, headers)
+  .then(response => response.json)
+  .then(info => { return info })
+  .catch(error => console.log(error))
 
-
-var info = await errorCatch.json()
-
+  console.log(info)
 for(var i = 0; i < 4; i++){
   var result = info.tracks.item[i]
   responseResults.push(result)
 }
-const responseResults = info.tracks.items.map(item => `${item.name} - ${item.artists[0]} - (${item.album.name}`)
+const responseResults = []
+
+for(let i = 0; i < info.tracks.items.length && i < 4; i++){
+const newItem = info.tracks.items[i]
+
+responseResults.push(item => `${item.name} - ${item.artists[0]} - (${item.album.name}`)
 console.log(responseResults)
 return responseResults
 }
-catch(errorCatch){
-  console.errorCatch('Return error', errorCatch)
+}
+catch(error){
+  console.error('Return error', error)
   return []
 }
 }

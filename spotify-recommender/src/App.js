@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Titlebar from "./components/Titlebar.js";
 import Searchbar from "./components/Searchbar.js";
 import SpotifyAudioFeatures from './components/songFeaturesRetriever.js';
-import getRecommendations from './recommender.js';
+import { getRecommendations } from './recommender.js';
 
 function App() {
 
@@ -51,7 +51,7 @@ function App() {
                 ""
               )}
         </div>
-        <div><button style={{borderRadius: 5}} onClick={event => console.log('clicked!')}>Test Recommend</button></div>
+        <div><button style={{borderRadius: 5}} onClick={() => getRecommendations()}>Test Recommend</button></div>
       </div>
     </div>
     

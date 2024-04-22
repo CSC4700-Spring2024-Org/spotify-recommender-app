@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Titlebar from "./components/Titlebar.js";
 import Searchbar from "./components/Searchbar.js";
-import SpotifyAudioFeatures from './songFeaturesRetriever.js';
+import SpotifyAudioFeatures from './components/songFeaturesRetriever.js';
 import getRecommendations from './recommender.js';
 
 function App() {
@@ -12,17 +12,11 @@ function App() {
   const CLIENT_SECRET = "1c7760f078134186b654ec52d4ac0bad"
 
   const[accessToken, setAccessToken] = useState("");
-  //const[selectedTrack, setSelectedTrack] = useState();
+  const[selectedTrack, setSelectedTrack] = useState("");
 
-  //const updateSelectedTrack = () => {
-  //  console.log("update selected track")
-  //  setSelectedTrack()
-  //  setSelectedTrack(trackId)
-  //}
-
-  var selectedTrack;
-  selectedTrack = "40riOy7x9W7GXjyGp4pjAv"
-
+  const selectTrack = (trackId) => {
+    setSelectedTrack(trackId)
+  }
 
   // requests Access Token
   useEffect(() => {
@@ -48,7 +42,7 @@ function App() {
           <Titlebar />
         </div>
         <div className="container" style={{padding: 20}} >
-          <Searchbar accessToken={accessToken}/>
+          <Searchbar accessToken={accessToken} selectTrack={selectTrack}/>
         </div>
         <div>
         {selectedTrack ? (

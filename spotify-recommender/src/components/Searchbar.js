@@ -4,9 +4,8 @@ import { search } from '../searcher.js';
 import SearchResults from './SearchResults.js';
 import './Searchbar.css';
 
-const Searchbar = (accessToken) => {
+const Searchbar = ({accessToken, selectTrack}) => {
 
-    accessToken = accessToken.accessToken
     const[results, setResults] = useState("")
 
     const clearResults= async () => {
@@ -32,7 +31,7 @@ const Searchbar = (accessToken) => {
             <button style={{borderRadius: 5}} onClick={event => handleSearch(document.getElementById("searchInput").value)}>Search</button>
           </div>
             {results.length > 0 ? (
-              <SearchResults results={results} />
+              <SearchResults results={results} selectTrack={selectTrack}/>
               ) : (
                 ""
               )}

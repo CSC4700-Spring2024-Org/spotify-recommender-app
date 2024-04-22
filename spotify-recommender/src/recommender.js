@@ -77,19 +77,6 @@ var info = await fetch(getUrl, headers)
   .catch(error => console.log(error))
 
   console.log(info)
-for(var i = 0; i < 4; i++){
-  var result = info.tracks.item[i]
-  responseResults.push(result)
-}
-const responseResults = []
-
-for(let i = 0; i < info.tracks.items.length && i < 4; i++){
-const newItem = info.tracks.items[i]
-
-responseResults.push(item => `${item.name} - ${item.artists[0]} - (${item.album.name}`)
-console.log(responseResults)
-return responseResults
-}
 }
 catch(error){
   console.error('Return error', error)

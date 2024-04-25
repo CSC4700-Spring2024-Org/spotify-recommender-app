@@ -1,7 +1,6 @@
 import React from 'react'
 
 const RecommendationDisplay = ({ recommendations }) => {
-    console.log(recommendations)
 
   return (
 

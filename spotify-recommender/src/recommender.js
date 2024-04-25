@@ -50,9 +50,15 @@ async function getRecommendations(accessToken, trackId, selectedFeaturesArray) {
 
 
 
-  //const getUrl = `${url}?${searchParameters.toString()}`
   console.log("recommender got features array", selectedFeaturesArray)
-  const getUrl = url + "?seed_tracks=" + seed_tracks + "&target_instrumentalness=" + 0.5 + "&target_loudness=" + 0.5
+
+  var getUrl = url + "?seed_tracks=" + seed_tracks
+  Object.entries(selectedFeaturesArray).map( ([key, value]) => {
+    var stringToAdd = '&' + key + '=' + value
+    console.log(stringToAdd)
+    getUrl += stringToAdd
+  })
+
   console.log("Using url", getUrl)
 
   //target attributes, and seed track

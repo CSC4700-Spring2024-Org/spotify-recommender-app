@@ -59,7 +59,11 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, selectedResult, setFeature
 
   const handleSubmit = () => {
     // Convert selected features into an array of booleans
-    const featuresArray = Object.values(selectedFeatures);
+    const featuresArray ={};
+    Object.entries(selectedFeatures).map( ([key, value]) => {
+      if (value) {
+        featuresArray[key] = audioFeatures[key]
+      }})
     setFeaturesArray(featuresArray);
     console.log("features array:", featuresArray)
   };

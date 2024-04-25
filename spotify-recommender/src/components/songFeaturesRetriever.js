@@ -59,7 +59,11 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, selectedResult, setFeature
 
   const handleSubmit = () => {
     // Convert selected features into an array of booleans
-    const featuresArray = Object.values(selectedFeatures);
+    const featuresArray ={};
+    Object.entries(selectedFeatures).map( ([key, value]) => {
+      if (value) {
+        featuresArray[key] = audioFeatures[key]
+      }})
     setFeaturesArray(featuresArray);
     console.log("features array:", featuresArray)
   };
@@ -71,27 +75,48 @@ const SpotifyAudioFeatures = ({ accessToken, trackId, selectedResult, setFeature
   return (
     <div>
       <h2>Audio Features</h2>
-      {/* adding outline for html/css format */}
       <div className='audio-features-container'>
-        <div className='album-cover'><img src={selectedResult.album.images[0].url} alt={selectedResult.album} width='75vm' height='75vm'></img></div>
-        <div className='audio-info'>
-          <div style={{fontWeight: 'bold'}}>{selectedResult.name}</div>
-          <div>{selectedResult.artists[0].name}</div>
-          <div className='audio-features'>
-            {Object.keys(selectedFeatures).map((feature) => (
-              <div key={feature}>
-                <input
-                  type="checkbox"
-                  checked={selectedFeatures[feature]}
-                  onChange={() => handleCheckboxChange(feature)}
-                /> {feature.charAt(0).toUpperCase() + feature.slice(1)}: {audioFeatures[feature]}
+        <div className='audio-features-info'>
+          <div className='album-cover'><img src={selectedResult.album.images[0].url} alt={selectedResult.album} width='225vm' height='225vm'></img></div>
+          <div className='audio-info'>
+            <div style={{fontWeight: 'bold', fontSize: '1.5em'}}>{selectedResult.name}</div>
+            <div style={{fontSize: '1.5em'}}>{selectedResult.artists[0].name}</div>
+            <div className='audio-features'>
+
+
+              <div>
+              {Object.keys(selectedFeatures).slice(0, 6).map((feature) => (
+                <div key={feature} style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                  <input
+                    type="checkbox"
+                    checked={selectedFeatures[feature]}
+                    onChange={() => handleCheckboxChange(feature)}
+                  /> 
+                  <div>{feature.charAt(0).toUpperCase() + feature.slice(1)}:</div>
+                  <div style={{paddingLeft: 4}}>{audioFeatures[feature]}</div>
               </div>
-            ))}
+              ))}
+              </div>
+              <div style={{paddingLeft: 10}}>
+                {Object.keys(selectedFeatures).slice(6, 12).map((feature) => (
+                  <div key={feature} style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                    <input
+                      type="checkbox"
+                      checked={selectedFeatures[feature]}
+                      onChange={() => handleCheckboxChange(feature)}
+                    /> 
+                    <div>{feature.charAt(0).toUpperCase() + feature.slice(1)}:</div>
+                    <div style={{paddingLeft: 4}}>{audioFeatures[feature]}</div>
+                </div>
+                ))}
+              </div>
+
+
+            </div>
+            <button style={{height: 35, borderRadius: 5, marginTop: 10}} onClick={handleSubmit}>Confirm Features</button>
           </div>
         </div>
-        <button style={{height: 35, borderRadius: 5}} onClick={handleSubmit}>Confirm Features</button>
       </div>
-      
     </div>
   );
 };

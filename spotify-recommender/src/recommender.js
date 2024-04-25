@@ -1,5 +1,5 @@
-// search Spotify API based on searchInput
-async function getRecommendations(accessToken, searchInput, selectedFeaturesArray) {
+// get Spotify API recommendations based on trackID
+async function getRecommendations(accessToken, trackId, selectedFeaturesArray) {
    //click on checkbox, search by some features. might be if and-logic then. do a dynamic list
    //switch for thw white part
   // set up API query
@@ -9,9 +9,9 @@ async function getRecommendations(accessToken, searchInput, selectedFeaturesArra
   //git pull before change, git push after
   const url = "https://api.spotify.com/v1/recommendations";
   const market = "US"
-  const seed_artists = searchInput;
+  const seed_artists = ""
   const seed_genres = ""
-  const seed_tracks = "2QTDuJIGKUjR7E2Q6KupIh"
+  const seed_tracks = trackId
   const target_acousticness = "target accousticness"
   const target_danceability ="target danceability"
   const target_energy = "target energy"
@@ -29,7 +29,7 @@ async function getRecommendations(accessToken, searchInput, selectedFeaturesArra
   
   const searchParameters = {
     market: "US",
-    seed_artists: searchInput,
+    seed_artists: seed_artists,
     seed_genres: seed_genres,
     seed_tracks: seed_tracks,
     target_acousticness: target_acousticness,
@@ -50,9 +50,15 @@ async function getRecommendations(accessToken, searchInput, selectedFeaturesArra
 
 
 
-  //const getUrl = `${url}?${searchParameters.toString()}`
   console.log("recommender got features array", selectedFeaturesArray)
-  const getUrl = url + "?seed_tracks=" + seed_tracks + "&target_instrumentalness=" + 0.5 + "&target_loudness=" + 0.5
+
+  var getUrl = url + "?seed_tracks=" + seed_tracks
+  Object.entries(selectedFeaturesArray).map( ([key, value]) => {
+    var stringToAdd = '&' + key + '=' + value
+    console.log(stringToAdd)
+    getUrl += stringToAdd
+  })
+
   console.log("Using url", getUrl)
 
   //target attributes, and seed track
@@ -78,6 +84,7 @@ var info = await fetch(getUrl, headers)
   .catch(error => console.log(error))
 
   console.log("recommendations:",info)
+  return(info)
 }
 catch(error){
   console.error('Return error', error)

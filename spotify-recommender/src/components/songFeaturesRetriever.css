@@ -5,11 +5,28 @@
     text-align: left;
 }
 
+.audio-features-info {
+    background-color: #EEEEEE;
+    width: 60%;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+.audio-features {
+    display: flex;
+    flex-direction: row;
+}
+
 .audio-info {
     padding-left: 10px;
     flex-direction: row;
 }
 
-.audio-features {
-    flex-direction: row;
+input[type=checkbox] {
+    margin-right: 8px; 
+    box-shadow: 0 0 0 0;
+    height: 15px;
+    width: 15px;
 }
